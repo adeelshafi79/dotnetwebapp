@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\webapp\\myfirstapp\\myfirstapp.csproj": {}
+    "C:\\Users\\madnan87\\Desktop\\webapp\\mechanical-solution\\myfirstapp.csproj": {}
   },
   "projects": {
-    "D:\\webapp\\myfirstapp\\myfirstapp.csproj": {
+    "C:\\Users\\madnan87\\Desktop\\webapp\\mechanical-solution\\myfirstapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\webapp\\myfirstapp\\myfirstapp.csproj",
+        "projectUniqueName": "C:\\Users\\madnan87\\Desktop\\webapp\\mechanical-solution\\myfirstapp.csproj",
         "projectName": "myfirstapp",
-        "projectPath": "D:\\webapp\\myfirstapp\\myfirstapp.csproj",
+        "projectPath": "C:\\Users\\madnan87\\Desktop\\webapp\\mechanical-solution\\myfirstapp.csproj",
         "packagesPath": "C:\\Users\\madnan87\\.nuget\\packages\\",
-        "outputPath": "D:\\webapp\\myfirstapp\\obj\\",
+        "outputPath": "C:\\Users\\madnan87\\Desktop\\webapp\\mechanical-solution\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\madnan87\\AppData\\Roaming\\NuGet\\NuGet.Config"
