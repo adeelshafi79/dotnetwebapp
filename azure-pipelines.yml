@@ -3,4 +3,47 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger:
+ branches:
+   exclude:
+     - '*'
 
+pr:
+ branches:
+  include:
+    - master
+
+jobs:
+- job: PR_Validation
+  displayName: 'PR Validation'
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8'
+
+  - task: NuGetCommand@2
+    displayName: 'Restore Dependencies'
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+      feedsToUse: 'select'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build the Code'
+    inputs:
+      command: 'build'
+      arguments: 'configuration Release'
+
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Unit Tests'
+    inputs:
+      command: 'test'
+      arguments: 'configuration Release no-build'
+
+
+  
