@@ -37,6 +37,8 @@ pipeline {
             steps {
                 sh 'dotnet publish --configuration Release --output ./publish'
                 // Copy the published files to the deployment directory
+                sh "sudo chown 777 /var/lib/jenkins/workspace/dotenet-webapp/publish/"
+                sh "sudo chown 777 /var/www/dotnetwebapp"
                 sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
             }
         }
