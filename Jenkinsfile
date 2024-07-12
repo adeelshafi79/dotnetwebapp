@@ -36,10 +36,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'dotnet publish --configuration Release --output ./publish'
-                // Copy the published files to the deployment directory
-                sh "sudo su"
                 
-                sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
             }
         }
 
