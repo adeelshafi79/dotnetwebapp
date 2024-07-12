@@ -35,7 +35,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'dotnet publish --configuration Release --output ./publish'
-                sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
+                
             }
         }
 
@@ -50,6 +50,7 @@ pipeline {
                 script {
                     // Stop the running application (if any)
                     sh 'sudo systemctl stop dotnetwebapp'
+                    sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
 
                     
 
