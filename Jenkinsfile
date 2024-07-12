@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DEPLOY_DIR = "/var/www/dotnetwebapp" // Adjust this to your desired deployment directory
+        ARTIFACT_DIR = "/home/pluto/dotnet-jenkins" // Define your custom artifact path
     }
 
     stages {
@@ -35,13 +36,15 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'dotnet publish --configuration Release --output ./publish'
-                
+                // Copy the published files to the deployment directory
+                sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
             }
         }
 
         stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'publish/**', allowEmptyArchive: true
+                // Specify the custom path for the artifacts
+                archiveArtifacts artifacts: "${env.ARTIFACT_DIR}/**", allowEmptyArchive: true
             }
         }
 
@@ -49,10 +52,7 @@ pipeline {
             steps {
                 script {
                     // Stop the running application (if any)
-                    
-                    sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
-
-                    
+                    sh 'sudo systemctl stop dotnetwebapp'
 
                     // Start the application
                     sh 'sudo systemctl start dotnetwebapp'
@@ -61,4 +61,3 @@ pipeline {
         }
     }
 }
-
