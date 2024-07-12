@@ -35,7 +35,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'dotnet publish --configuration Release --output ./publish'
-                sh "sudo cp -r ${env.WORKSPACE}/publish/* ${DEPLOY_DIR}"
+                sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
             }
         }
 
@@ -51,8 +51,7 @@ pipeline {
                     // Stop the running application (if any)
                     sh 'sudo systemctl stop dotnetwebapp'
 
-                    // Copy the published files to the deployment directory
-                    sh "sudo cp -r ${env.WORKSPACE}/publish/* ${DEPLOY_DIR}"
+                    
 
                     // Start the application
                     sh 'sudo systemctl start dotnetwebapp'
