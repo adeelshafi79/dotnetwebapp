@@ -52,9 +52,6 @@ pipeline {
                 script {
                     // Stop the running application (if any)
                     sh 'sudo systemctl stop dotnetwebapp'
-                    sh "sudo cp -r ./publish/* ${DEPLOY_DIR}"
-
-
                     // Start the application
                     sh 'sudo systemctl start dotnetwebapp'
                 }
